@@ -9,6 +9,11 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+/* GET /celebrities/add */
+router.get('/add', (req, res, next) => {
+  res.render('celebrities/add'); // looks for views/celebrities/add.hbs
+});
+
 /* GET /celebrities */
 router.get('/:celeb_id', (req, res, next) => {
   Celebrity.findById(req.params.celeb_id).then((celeb) => {
@@ -16,11 +21,6 @@ router.get('/:celeb_id', (req, res, next) => {
       res.render('celebrities/detail', { celeb: celeb, movies: allMoviesWithThisActor });
     })
   })
-});
-
-/* GET /celebrities/add */
-router.get('/add', (req, res, next) => {
-  res.render('celebrities/add'); // looks for views/celebrities/add.hbs
 });
 
 /* GET /celebrities/12987361928736zuzdguzt/edit */

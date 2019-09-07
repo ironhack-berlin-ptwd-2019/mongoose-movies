@@ -6,7 +6,7 @@ const Movie = require('../models/movie')
 
 /* GET /movies */
 router.get('/', (req, res, next) => {
-  Movie.find({}).then((allMovies) => { // TODO: Note that this should use 'populate'
+  Movie.find().populate('actors').then((allMovies) => { // TODO: Note that this should use 'populate'
     res.render('movies/index', { movies: allMovies });
   })
 });
