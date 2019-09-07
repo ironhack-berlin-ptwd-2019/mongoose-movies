@@ -2,10 +2,20 @@ const express = require('express');
 const router = express.Router();
 
 const Celebrity = require('../models/celebrity')
+const Movie = require('../models/movie')
 
 /* GET /celebrities */
 router.get('/', (req, res, next) => {
   res.render('index');
+});
+
+/* GET /celebrities */
+router.get('/:celeb_id', (req, res, next) => {
+  Celebrity.findById(req.params.celeb_id).then((celeb) => {
+    Movie.find({ actors: celeb._id }).then((allMoviesWithThisActor) => {
+      res.render('celebrities/detail', { celeb: celeb, movies: allMoviesWithThisActor });
+    })
+  })
 });
 
 /* GET /celebrities/add */

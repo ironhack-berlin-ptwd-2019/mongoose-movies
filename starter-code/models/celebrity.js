@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const abc = new Schema({
+const celebritySchema = new Schema({
   name: String,
   occupation: String,
   catchPhrase: String,
@@ -13,4 +13,4 @@ const abc = new Schema({
     }
   });
 
-module.exports = mongoose.model("Celeb", abc);
+module.exports = mongoose.model("Celebrity", celebritySchema);
